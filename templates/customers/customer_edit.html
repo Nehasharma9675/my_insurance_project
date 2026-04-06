@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Edit Customer{% endblock %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'css/customer_form.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="page-wrapper">
+  <div class="form-card">
+
+        <h2>Edit Customer</h2>
+
+        <form method="post"
+              action="{% url 'customer_edit' customer.id %}"
+              enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="form-grid">
+
+                <!-- Username -->
+                <div>
+                    <label>Username</label>
+                    <input type="text"
+                           value="{{ customer.user.username }}"
+                           readonly>
+                </div>
+
+                <!-- Phone -->
+                <div>
+                    <label>Phone</label>
+                    <input type="text"
+                           name="phone"
+                           value="{{ customer.phone }}"
+                           required>
+                </div>
+
+                <!-- City -->
+                <div>
+                    <label>City</label>
+                    <input type="text"
+                           name="city"
+                           value="{{ customer.city }}"
+                           required>
+                </div>
+
+                <!-- State -->
+                <div>
+                    <label>State</label>
+                    <input type="text"
+                           name="state"
+                           value="{{ customer.state }}"
+                           required>
+                </div>
+
+                <!-- Upload New KYC -->
+                <div>
+                    <label>Upload New KYC</label>
+                    <input type="file"
+                           name="kyc_document"
+                           accept=".pdf,.jpg,.jpeg,.png">
+                </div>
+
+                <!-- Current KYC -->
+                <div>
+                    <label>Current KYC</label>
+                    {% if customer.kyc_document %}
+                        <a class="kyc-view-btn"
+                           href="{{ customer.kyc_document.url }}"
+                           target="_blank">
+                           View Document
+                        </a>
+                    {% else %}
+                        <span class="no-file">No File Uploaded</span>
+                    {% endif %}
+                </div>
+
+            </div>
+            <div class="clear-fix">
+
+                <button type="submit" class="save-btn">Update Customer</button>
+            </div>
+           
+          
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

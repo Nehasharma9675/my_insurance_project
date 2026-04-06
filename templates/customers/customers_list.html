@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Customer List{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/customer_list.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="list-wrapper">
+
+    <div class="list-card">
+
+        <div class="list-header">
+            <h2>Customer List</h2>
+
+            <a href="{% url 'customer_add' %}" class="add-btn">
+                + Add Customer 
+            </a>
+        </div>
+
+        {% if messages %}
+    {% for message in messages %}
+        <div style="color:green;">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+
+        <table class="customer-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Phone</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>KYC</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for c in customers %}
+                <tr>
+                    <td>{{ c.user.username }}</td>
+                    <td>{{ c.phone }}</td>
+                    <td>{{ c.city }}</td>
+                    <td>{{ c.state }}</td>
+
+                    <td>
+                        {% if c.kyc_document %}
+                            <a href="{{ c.kyc_document.url }}" target="_blank">View</a>
+                        {% else %}
+                            NA
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        <a href="{% url 'customer_edit' c.id %}" class="edit-btn">Edit</a>
+
+                        <form method="post"
+                            action="{% url 'customer_delete' c.id %}"
+                            style="display:inline;"
+                            onsubmit="return confirmDelete();">
+
+                            {% csrf_token %}
+                            <button type="submit" class="delete-btn">
+                                Delete
+                            </button>
+                        </form>                    
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" style="text-align:center;">No Customers Found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+
+    {% for c in customers %}
+     <div class="pagination" style="margin-top:20px; text-align:center;">
+
+    {% if customers.has_previous %}
+        <a href="?page=1">First</a>
+
+        <a href="?page={{ customers.previous_page_number }}">
+            Previous
+        </a>
+    {% endif %}
+
+    <span style="margin:0 10px;">
+        Page {{ customers.number }} of {{ customers.paginator.num_pages }}
+    </span>
+
+    {% if customers.has_next %}
+        <a href="?page={{ customers.next_page_number }}">
+            Next
+        </a>
+
+        <a href="?page={{ customers.paginator.num_pages }}">
+            Last
+        </a>
+    {% endif %}
+    
+</div>
+
+{% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'customer/customer_form.js' %}"></script>
+{% endblock %}

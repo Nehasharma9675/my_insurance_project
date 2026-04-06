@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% comment %} {% block title %}Add Customer{% endblock %} {% endcomment %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/customer_form.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="form-card">
+
+        <h2>Add Customer</h2>
+
+        <form method="post" action="{% url 'customer_add' %}" enctype="multipart/form-data" onsubmit="return validateForm()">
+            {% csrf_token %}
+
+            <div class="form-grid">
+                <div>
+                    <label>Username</label>
+                    <input type="text" name="username" id="username">
+                    <span class="error-message" id="usernameError"></span>
+
+                </div>
+
+                <div>
+                    <label>Password</label>
+                    <input type="password" name="password" id="password">
+                    <span class="error-message" id="passwordError"></span>
+
+                </div>
+
+                <div>
+                    <label>Phone</label>
+                    <input type="text" name="phone" id="phone">
+                    <span class="error-message" id="phoneError"></span>
+                    
+
+                </div>
+
+                <div>
+                    <label>City</label>
+                    <input type="text" name="city" id="city">
+                    <span class="error-message" id="cityError"></span>
+                    
+
+                </div>
+
+                <div>
+                    <label>State</label>
+                    <input type="text" name="state" id="state">
+                    <span class="error-message" id="stateError"></span>
+                    
+
+                </div>
+
+                <div>
+                    <label>KYC Document</label>
+                    <input type="file" name="kyc_document" accept=".pdf,.jpg,.jpeg,.png" id="kyc_document">
+                    <span class="error-message" id="kycError"></span>
+
+                </div>
+            </div>
+            <div class="clear-fix">
+
+                <button type="submit" class="save-btn">Save Customer</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'customer/customer_form.js' %}"></script>
+{% endblock %}
+

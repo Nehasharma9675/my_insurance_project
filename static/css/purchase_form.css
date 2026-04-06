@@ -1,0 +1,130 @@
+/* ===== Page Background ===== */
+.page-wrapper {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+
+    background: linear-gradient(135deg, #1d2671, #c33764);
+}
+
+/* ===== Main Card ===== */
+.form-card {
+    width: 520px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+
+    padding: 40px;
+    border-radius: 20px;
+
+    box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+
+    animation: fadeIn 0.4s ease;
+}
+
+/* ===== Title ===== */
+.form-card h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    color: #1d2671;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+/* ===== Labels ===== */
+.form-card label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+/* ===== Inputs + Select ===== */
+.form-card input,
+.form-card select {
+
+    width: 100%;
+    padding: 14px;
+
+    border-radius: 12px;
+    border: 1px solid #ddd;
+
+    font-size: 15px;
+    background: #f5f7fb;
+
+    transition: all 0.3s ease;
+}
+
+/* Focus Effect */
+.form-card input:focus,
+.form-card select:focus {
+    border-color: #1d2671;
+    background: white;
+
+    box-shadow: 0 0 0 3px rgba(29,38,113,0.15);
+
+    outline: none;
+}
+
+/* ===== Button ===== */
+.save-btn {
+
+    width: 100%;
+    margin-top: 25px;
+
+    padding: 16px;
+
+    border-radius: 14px;
+    border: none;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    background: linear-gradient(135deg, #1d2671, #c33764);
+    color: white;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+/* Hover */
+.save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+/* Click */
+.save-btn:active {
+    transform: scale(0.98);
+}
+
+/* ===== Error ===== */
+.error {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* ===== Animation ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 600px) {
+
+    .form-card {
+        width: 100%;
+        padding: 30px;
+    }
+
+}

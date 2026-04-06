@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Smart Insurance{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+        }
+
+        header {
+            background: #1d2671;
+            color: #fff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            padding: 30px;
+            min-height: 70vh;
+        }
+
+        footer {
+            background: #1d2671;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 13px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<header>
+    <h2>Smart Insurance System</h2>
+    <nav>
+        <a href="/dashboard/admin/">Dashboard</a>
+        <a href="/customer/">Customers</a>
+        <a href="/policies/">Policies</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </nav>
+</header>
+
+<div class="container">
+    {% block content %}
+    <!-- Page content goes here -->
+    {% endblock %}
+</div>
+
+<footer>
+    © 2026 Smart Insurance Management System
+</footer>
+
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>

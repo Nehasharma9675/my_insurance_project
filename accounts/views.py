@@ -8,14 +8,14 @@ MAX_ATTEMPTS = 5
 LOCK_TIME = 60  # seconds (1 minute)
 
 
-def get_redis_client():
+# def get_redis_client():
 
-    try:
-        client = redis.StrictRedis(host="localhost", port=6379, db=1)
-        client.ping()
-        print("Redis connected successfully")
-    except redis.RedisError as e:
-        print("Redis connection failed:", e)
+#     try:
+#         client = redis.StrictRedis(host="localhost", port=6379, db=1)
+#         client.ping()
+#         print("Redis connected successfully")
+#     except redis.RedisError as e:
+#         print("Redis connection failed:", e)
 
 
 def login_view(request):

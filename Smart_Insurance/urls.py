@@ -15,27 +15,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.http import HttpResponse
 from django.urls import include, path
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
-def test_view(request):
-    return HttpResponse("Accounts working ✅")
-
-urlpatterns = [
-    path('', test_view),
-]
 
 urlpatterns = [
     path('', RedirectView.as_view(url='accounts/login/', permanent=False)),
     path('admin/', admin.site.urls),
-    # path('accounts/',include('accounts.urls')),
-    # path('customer/',include('customer.urls')),
-    # path('policies/',include('policies.urls')),
-    # path('claims/',include('claims.urls')),
-    # path('dashboard/',include('dashboard.urls')),
-    # path('purchase/',include('purchase.urls')),
+    path('accounts/',include('accounts.urls')),
+    path('customer/',include('customer.urls')),
+    path('policies/',include('policies.urls')),
+    path('claims/',include('claims.urls')),
+    path('dashboard/',include('dashboard.urls')),
+    path('purchase/',include('purchase.urls')),
     # path('payments/',include('payments.urls')),
 ]
 
